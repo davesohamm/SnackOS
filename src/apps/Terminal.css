@@ -1,0 +1,127 @@
+.terminal-app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #1a1a1f;
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  color: #00ff00;
+  cursor: text;
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: #0d0d10;
+  border-bottom: 1px solid #2a2a30;
+  color: #888;
+  font-size: var(--font-size-xs);
+}
+
+.terminal-content {
+  flex: 1;
+  padding: var(--spacing-lg);
+  overflow-y: auto;
+  line-height: 1.6;
+}
+
+.terminal-entry {
+  margin-bottom: var(--spacing-sm);
+}
+
+.terminal-command {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
+}
+
+.terminal-prompt {
+  color: #00ff00;
+  font-weight: 600;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #00ff00;
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  outline: none;
+}
+
+.terminal-input::selection {
+  background: rgba(0, 255, 0, 0.3);
+}
+
+.terminal-input-line {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+.terminal-output {
+  color: #ffffff;
+  margin-left: calc(var(--spacing-md) + 4px);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.terminal-output.error {
+  color: #ff4444;
+}
+
+.terminal-output div {
+  margin-bottom: 2px;
+}
+
+/* Scrollbar */
+.terminal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terminal-content::-webkit-scrollbar-track {
+  background: #0d0d10;
+}
+
+.terminal-content::-webkit-scrollbar-thumb {
+  background: #2a2a30;
+  border-radius: 4px;
+}
+
+.terminal-content::-webkit-scrollbar-thumb:hover {
+  background: #3a3a40;
+}
+
+/* Cursor blink effect */
+.terminal-input:focus::after {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  background: #00ff00;
+  margin-left: 2px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 255, 0, 0.3);
+}
+
+::-moz-selection {
+  background: rgba(0, 255, 0, 0.3);
+}
+

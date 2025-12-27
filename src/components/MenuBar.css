@@ -1,0 +1,118 @@
+.menu-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 32px;
+  background: rgba(20, 20, 25, 0.85);
+  backdrop-filter: blur(var(--blur-lg));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 var(--spacing-md);
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.menu-left, .menu-right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.menu-logo {
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: 0.3px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-xs);
+  color: rgba(255, 255, 255, 0.9);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+
+.menu-item:hover {
+  color: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.github-btn {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: var(--spacing-xs);
+  display: flex;
+  align-items: center;
+  transition: all var(--transition-fast);
+  border-radius: var(--radius-sm);
+}
+
+.github-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+}
+
+.github-icon {
+  width: 18px;
+  height: 18px;
+  filter: invert(1) brightness(0.9);
+  transition: filter var(--transition-fast);
+}
+
+.github-btn:hover .github-icon {
+  filter: invert(1) brightness(1);
+}
+
+.menu-item.disabled {
+  opacity: 0.5;
+}
+
+.menu-item.charging {
+  color: var(--accent-green);
+}
+
+.menu-item.charging:hover {
+  color: var(--accent-green);
+  background: rgba(52, 199, 89, 0.15);
+}
+
+.menu-item.low-battery {
+  color: var(--accent-red);
+  animation: battery-pulse 2s ease-in-out infinite;
+}
+
+.menu-item.low-battery:hover {
+  color: var(--accent-red);
+  background: rgba(255, 59, 48, 0.15);
+}
+
+@keyframes battery-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.battery-level {
+  font-size: var(--font-size-xs);
+  margin-left: 4px;
+  font-weight: 500;
+}
+
+.menu-time {
+  font-size: var(--font-size-xs);
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  padding: var(--spacing-xs) var(--spacing-sm);
+}
+

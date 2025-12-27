@@ -1,0 +1,24 @@
+{
+  "name": "os-on-web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.2",
+    "typescript": "~5.9.3",
+    "vite": "^7.2.4"
+  },
+  "dependencies": {
+    "@types/howler": "^2.2.12",
+    "framer-motion": "^12.23.26",
+    "howler": "^2.2.4",
+    "lucide-react": "^0.562.0",
+    "marked": "^17.0.1",
+    "zustand": "^4.4.7"
+  }
+}

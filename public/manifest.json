@@ -1,0 +1,43 @@
+{
+  "name": "SnackOS - Web Operating System",
+  "short_name": "SnackOS",
+  "description": "A modern, feature-rich web-based operating system with 17+ apps",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a1f",
+  "theme_color": "#007aff",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "utilities", "education"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Calculator",
+      "url": "/?app=calculator",
+      "description": "Open Calculator"
+    },
+    {
+      "name": "Terminal",
+      "url": "/?app=terminal",
+      "description": "Open Terminal"
+    },
+    {
+      "name": "Notes",
+      "url": "/?app=notes",
+      "description": "Open Notes"
+    }
+  ]
+}
+

@@ -1,0 +1,135 @@
+.window-component {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+}
+
+.window-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-light);
+  padding: 0 var(--spacing-md);
+  cursor: grab;
+  user-select: none;
+}
+
+.window-titlebar:active {
+  cursor: grabbing;
+}
+
+.window-controls {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.window-controls.left {
+  min-width: 96px;
+}
+
+.window-controls.right {
+  min-width: 96px;
+}
+
+.window-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  opacity: 1;
+  cursor: pointer;
+}
+
+.window-btn svg {
+  opacity: 0;
+  width: 14px;
+  height: 14px;
+  transition: opacity var(--transition-fast);
+}
+
+.window-component:hover .window-btn svg {
+  opacity: 1;
+}
+
+.window-btn.close {
+  background: #ff5f56;
+}
+
+.window-btn.close:hover {
+  background: #ff3b30;
+}
+
+.window-btn.minimize {
+  background: #ffbd2e;
+}
+
+.window-btn.minimize:hover {
+  background: #ff9500;
+}
+
+.window-btn.maximize {
+  background: #27c93f;
+}
+
+.window-btn.maximize:hover {
+  background: #34c759;
+}
+
+.window-btn svg {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.window-title {
+  flex: 1;
+  text-align: center;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.window-content {
+  flex: 1;
+  overflow: hidden;
+  background: var(--bg-primary);
+}
+
+/* Snap Preview Zones */
+.snap-preview {
+  position: fixed;
+  top: 32px;
+  height: calc(100vh - 102px);
+  width: 50%;
+  background: rgba(0, 122, 255, 0.2);
+  border: 2px solid var(--accent-blue);
+  pointer-events: none;
+  z-index: 9999;
+  animation: fadeIn 0.2s ease;
+}
+
+.snap-preview.snap-left {
+  left: 0;
+}
+
+.snap-preview.snap-right {
+  right: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
