@@ -21,7 +21,7 @@ interface WindowProps {
 export const WindowComponent: React.FC<WindowProps> = ({
   id,
   title,
-  icon,
+  // icon, // Unused for now
   x,
   y,
   width,
@@ -38,7 +38,7 @@ export const WindowComponent: React.FC<WindowProps> = ({
     focusWindow(id);
   };
 
-  const handleDrag = (e: any, info: any) => {
+  const handleDrag = (_e: any, info: any) => {
     const SNAP_THRESHOLD = 50;
     const mouseX = info.point.x;
 
@@ -51,7 +51,7 @@ export const WindowComponent: React.FC<WindowProps> = ({
     }
   };
 
-  const handleDragEnd = (e: any, info: any) => {
+  const handleDragEnd = (_e: any, info: any) => {
     if (snapZone) {
       snapWindow(id, snapZone);
       setSnapZone(null);

@@ -187,7 +187,6 @@ export const useStore = create<OSState>()(
 
         const MENU_BAR_HEIGHT = 32;
         const DOCK_HEIGHT = 80;
-        const TITLE_BAR_HEIGHT = 32;
         const MIN_TOP_MARGIN = MENU_BAR_HEIGHT + 10; // Menu bar + small margin
 
         const centerX = (window.innerWidth - width) / 2;

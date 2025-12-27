@@ -14,7 +14,7 @@ export interface Window {
   isFullscreen: boolean;
 }
 
-export type AppId = 'snake' | 'notes' | 'clock' | 'calendar' | 'files' | 'settings' | 'calculator' | 'terminal' | 'taskmanager' | 'todo' | 'markdown' | 'paint' | 'music' | 'minesweeper';
+export type AppId = 'snake' | 'notes' | 'clock' | 'calendar' | 'files' | 'settings' | 'calculator' | 'terminal' | 'taskmanager' | 'todo' | 'markdown' | 'paint' | 'music' | 'tictactoe';
 
 export interface App {
   id: AppId;

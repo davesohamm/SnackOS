@@ -82,7 +82,7 @@ export const Desktop: React.FC = () => {
     setLoadingStatus('Loading wallpapers...');
 
     const loadImage = (src: string): Promise<void> => {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         const img = new Image();
         img.onload = () => {
           loadedCount++;
