@@ -2,9 +2,9 @@
 
 <div align="center">
 
-![Captain America](./assets/png-icons/icons8-captain-america-100.png)
-![Spider-Man](./assets/png-icons/icons8-spider-man-new-50.png)
-![Batman](./assets/png-icons/icons8-batman-50.png)
+![Captain America](./public/assets/png-icons/icons8-captain-america-100.png)
+![Spider-Man](./public/assets/png-icons/icons8-spider-man-new-50.png)
+![Batman](./public/assets/png-icons/icons8-batman-50.png)
 
 **A browser-based operating system simulation — Your personal JARVIS prototype!**
 
@@ -350,10 +350,10 @@ This project is open source and available under the MIT License.
 
 <div align="center">
 
-![Windows](./assets/png-icons/icons8-windows-11-50.png)
-![Calendar](./assets/png-icons/icons8-calendar-app-50.png)
-![Files](./assets/png-icons/icons8-files-50.png)
-![Notes](./assets/png-icons/icons8-notes-50.png)
+![Windows](./public/assets/png-icons/icons8-windows-11-50.png)
+![Calendar](./public/assets/png-icons/icons8-calendar-app-50.png)
+![Files](./public/assets/png-icons/icons8-files-50.png)
+![Notes](./public/assets/png-icons/icons8-notes-50.png)
 
 **Built with ❤️ and React**
 
