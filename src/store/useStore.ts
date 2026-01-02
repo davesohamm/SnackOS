@@ -36,14 +36,16 @@ interface PaintCommand {
   timestamp: number;
 }
 
+import { getAssetPath } from '../utils/assetPath';
+
 const WALLPAPERS = [
-  { id: 'forest', name: 'Calm Forest', path: '/assets/wallpapers/calm-forest-landscape-under-clouds-hu.jpg' },
-  { id: 'apple', name: 'Apple CNY', path: '/assets/wallpapers/apple-chinese-new-year-mac-mt.jpg' },
-  { id: 'ghost', name: 'Ghost', path: '/assets/wallpapers/ghost-ol.jpg' },
-  { id: 'chamonix', name: 'Chamonix Mountains', path: '/assets/wallpapers/chamonix-mountains-5k-ih.jpg' },
-  { id: 'pilot-pikachu', name: 'Pilot Pikachu', path: '/assets/wallpapers/pilot-pikachu-journey-ar.jpg' },
-  { id: 'pikachu-fireworks', name: 'Pikachu Fireworks', path: '/assets/wallpapers/pikachu-seeing-fireworks-9r.jpg' },
-  { id: 'pikachu-horizon', name: 'Pikachu Horizon', path: '/assets/wallpapers/pikachu-beyond-the-horizon-42.jpg' },
+  { id: 'forest', name: 'Calm Forest', path: getAssetPath('/assets/wallpapers/calm-forest-landscape-under-clouds-hu.jpg') },
+  { id: 'apple', name: 'Apple CNY', path: getAssetPath('/assets/wallpapers/apple-chinese-new-year-mac-mt.jpg') },
+  { id: 'ghost', name: 'Ghost', path: getAssetPath('/assets/wallpapers/ghost-ol.jpg') },
+  { id: 'chamonix', name: 'Chamonix Mountains', path: getAssetPath('/assets/wallpapers/chamonix-mountains-5k-ih.jpg') },
+  { id: 'pilot-pikachu', name: 'Pilot Pikachu', path: getAssetPath('/assets/wallpapers/pilot-pikachu-journey-ar.jpg') },
+  { id: 'pikachu-fireworks', name: 'Pikachu Fireworks', path: getAssetPath('/assets/wallpapers/pikachu-seeing-fireworks-9r.jpg') },
+  { id: 'pikachu-horizon', name: 'Pikachu Horizon', path: getAssetPath('/assets/wallpapers/pikachu-beyond-the-horizon-42.jpg') },
 ];
 
 interface OSState {
@@ -324,7 +326,9 @@ export const useStore = create<OSState>()(
       // Wallpaper
       cycleWallpaper: () => {
         const current = localStorage.getItem('snackos-wallpaper') || WALLPAPERS[0].path;
-        const currentIndex = WALLPAPERS.findIndex(w => w.path === current);
+        // Normalize current path if it's an old absolute path
+        const normalizedCurrent = current.startsWith('/assets') ? getAssetPath(current) : current;
+        const currentIndex = WALLPAPERS.findIndex(w => w.path === normalizedCurrent);
         const nextIndex = (currentIndex + 1) % WALLPAPERS.length;
         const nextWallpaper = WALLPAPERS[nextIndex];
         

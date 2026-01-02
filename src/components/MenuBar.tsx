@@ -1,6 +1,7 @@
 // macOS-style menu bar
 import React, { useState, useEffect } from 'react';
 import { Wifi, Battery, BatteryCharging, Volume2 } from 'lucide-react';
+import { getAssetPath } from '../utils/assetPath';
 import './MenuBar.css';
 
 export const MenuBar: React.FC = () => {
@@ -111,7 +112,7 @@ export const MenuBar: React.FC = () => {
       </div>
       <div className="menu-right">
         <button className="menu-item github-btn" onClick={handleGitHubClick} title="GitHub">
-          <img src="/assets/png-icons/icons8-github-50.png" alt="GitHub" className="github-icon" />
+          <img src={getAssetPath('/assets/png-icons/icons8-github-50.png')} alt="GitHub" className="github-icon" />
         </button>
         <button 
           className={`menu-item ${wifiEnabled ? 'active' : 'disabled'}`}

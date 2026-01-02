@@ -21,6 +21,7 @@ import { Paint } from '../apps/Paint';
 import { Music } from '../apps/Music';
 import { VoiceAssistant } from './VoiceAssistant';
 import { Maximize2, Monitor } from 'lucide-react';
+import { getAssetPath } from '../utils/assetPath';
 import './Desktop.css';
 
 const APP_COMPONENTS = {
@@ -48,6 +49,31 @@ export const Desktop: React.FC = () => {
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [loadingStatus, setLoadingStatus] = useState('Initializing...');
 
+  // Initialize wallpaper from localStorage
+  useEffect(() => {
+    const savedWallpaper = localStorage.getItem('snackos-wallpaper');
+    const defaultWallpaper = getAssetPath('/assets/wallpapers/calm-forest-landscape-under-clouds-hu.jpg');
+    
+    // Normalize path: if it's an old absolute path, convert it using getAssetPath
+    let wallpaperPath = defaultWallpaper;
+    if (savedWallpaper) {
+      // If it starts with /assets, it's an old absolute path - normalize it
+      if (savedWallpaper.startsWith('/assets')) {
+        wallpaperPath = getAssetPath(savedWallpaper);
+        // Update localStorage with normalized path
+        localStorage.setItem('snackos-wallpaper', wallpaperPath);
+      } else {
+        // Already normalized or has base URL
+        wallpaperPath = savedWallpaper;
+      }
+    }
+    
+    const wallpaperElement = document.querySelector('.desktop-wallpaper') as HTMLElement;
+    if (wallpaperElement) {
+      wallpaperElement.style.backgroundImage = `url(${wallpaperPath})`;
+    }
+  }, []);
+
   // Preload all assets
   useEffect(() => {
     const hasSeenWelcome = localStorage.getItem('snackos-welcome-seen');
@@ -63,17 +89,17 @@ export const Desktop: React.FC = () => {
 
   const preloadAssets = async () => {
     const WALLPAPERS = [
-      '/assets/wallpapers/calm-forest-landscape-under-clouds-hu.jpg',
-      '/assets/wallpapers/apple-chinese-new-year-mac-mt.jpg',
-      '/assets/wallpapers/ghost-ol.jpg',
-      '/assets/wallpapers/chamonix-mountains-5k-ih.jpg',
-      '/assets/wallpapers/pilot-pikachu-journey-ar.jpg',
-      '/assets/wallpapers/pikachu-seeing-fireworks-9r.jpg',
-      '/assets/wallpapers/pikachu-beyond-the-horizon-42.jpg',
+      getAssetPath('/assets/wallpapers/calm-forest-landscape-under-clouds-hu.jpg'),
+      getAssetPath('/assets/wallpapers/apple-chinese-new-year-mac-mt.jpg'),
+      getAssetPath('/assets/wallpapers/ghost-ol.jpg'),
+      getAssetPath('/assets/wallpapers/chamonix-mountains-5k-ih.jpg'),
+      getAssetPath('/assets/wallpapers/pilot-pikachu-journey-ar.jpg'),
+      getAssetPath('/assets/wallpapers/pikachu-seeing-fireworks-9r.jpg'),
+      getAssetPath('/assets/wallpapers/pikachu-beyond-the-horizon-42.jpg'),
     ];
 
     const OTHER_ASSETS = [
-      '/assets/png-icons/icons8-github-50.png',
+      getAssetPath('/assets/png-icons/icons8-github-50.png'),
     ];
 
     const allAssets = [...WALLPAPERS, ...OTHER_ASSETS];

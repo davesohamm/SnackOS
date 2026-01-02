@@ -1,6 +1,7 @@
 // System Settings & Preferences
 import React, { useState } from 'react';
 import { Palette, Moon, Sun, Image as ImageIcon, Clock as ClockIcon, Monitor } from 'lucide-react';
+import { getAssetPath } from '../utils/assetPath';
 import './Settings.css';
 
 interface SettingsProps {}
@@ -10,13 +11,13 @@ type AccentColor = 'blue' | 'purple' | 'green' | 'red' | 'orange';
 type ClockFormat = '12h' | '24h';
 
 const WALLPAPERS = [
-  { id: 'forest', name: 'Calm Forest', path: '/assets/wallpapers/calm-forest-landscape-under-clouds-hu.jpg' },
-  { id: 'apple', name: 'Apple CNY', path: '/assets/wallpapers/apple-chinese-new-year-mac-mt.jpg' },
-  { id: 'ghost', name: 'Ghost', path: '/assets/wallpapers/ghost-ol.jpg' },
-  { id: 'chamonix', name: 'Chamonix Mountains', path: '/assets/wallpapers/chamonix-mountains-5k-ih.jpg' },
-  { id: 'pilot-pikachu', name: 'Pilot Pikachu', path: '/assets/wallpapers/pilot-pikachu-journey-ar.jpg' },
-  { id: 'pikachu-fireworks', name: 'Pikachu Fireworks', path: '/assets/wallpapers/pikachu-seeing-fireworks-9r.jpg' },
-  { id: 'pikachu-horizon', name: 'Pikachu Horizon', path: '/assets/wallpapers/pikachu-beyond-the-horizon-42.jpg' },
+  { id: 'forest', name: 'Calm Forest', path: getAssetPath('/assets/wallpapers/calm-forest-landscape-under-clouds-hu.jpg') },
+  { id: 'apple', name: 'Apple CNY', path: getAssetPath('/assets/wallpapers/apple-chinese-new-year-mac-mt.jpg') },
+  { id: 'ghost', name: 'Ghost', path: getAssetPath('/assets/wallpapers/ghost-ol.jpg') },
+  { id: 'chamonix', name: 'Chamonix Mountains', path: getAssetPath('/assets/wallpapers/chamonix-mountains-5k-ih.jpg') },
+  { id: 'pilot-pikachu', name: 'Pilot Pikachu', path: getAssetPath('/assets/wallpapers/pilot-pikachu-journey-ar.jpg') },
+  { id: 'pikachu-fireworks', name: 'Pikachu Fireworks', path: getAssetPath('/assets/wallpapers/pikachu-seeing-fireworks-9r.jpg') },
+  { id: 'pikachu-horizon', name: 'Pikachu Horizon', path: getAssetPath('/assets/wallpapers/pikachu-beyond-the-horizon-42.jpg') },
 ];
 
 const ACCENT_COLORS = [
@@ -40,7 +41,22 @@ export const Settings: React.FC<SettingsProps> = () => {
 
   const [wallpaper, setWallpaper] = useState(() => {
     const saved = localStorage.getItem('snackos-wallpaper');
-    return saved || '/assets/wallpapers/calm-forest-landscape-under-clouds-hu.jpg';
+    const defaultWallpaper = getAssetPath('/assets/wallpapers/calm-forest-landscape-under-clouds-hu.jpg');
+    
+    if (!saved) {
+      return defaultWallpaper;
+    }
+    
+    // Normalize path: if it's an old absolute path, convert it using getAssetPath
+    if (saved.startsWith('/assets')) {
+      const normalized = getAssetPath(saved);
+      // Update localStorage with normalized path
+      localStorage.setItem('snackos-wallpaper', normalized);
+      return normalized;
+    }
+    
+    // Already normalized or has base URL
+    return saved;
   });
 
   const [clockFormat, setClockFormat] = useState<ClockFormat>(() => {
